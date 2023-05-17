@@ -1,0 +1,87 @@
+﻿@model Bookstore.ViewModels.BooksGenres
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <form asp-controller="Books" asp-action="Index" method="get">
+        <p>
+            <select asp-for="Genres" name="genre" asp-items="@Model.Genres">
+                <option value="">All</option>
+            </select>
+            Title:<input name="query" value="" type="text" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+
+    <thead>
+        <tr>
+            <th>
+                Front Page
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Books[0].Title)
+            </th>
+            <th>
+                Author 
+            </th>
+            <th>
+                
+            </th>
+            <th>
+               Year of publishing
+            </th>
+            <th>
+                Number of pages
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Books[0].Publisher)
+            </th>
+           
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Books) {
+        <tr>
+                <td>
+                    <img src="@item.FrontPage" alt="front_page" width="200px">
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.LastName)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearPublished)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumPages)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Publisher)
+            </td>
+          
+          
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
