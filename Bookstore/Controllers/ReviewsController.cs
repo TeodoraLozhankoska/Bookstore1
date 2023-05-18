@@ -19,13 +19,15 @@ namespace Bookstore.Controllers
         }
 
         // GET: Reviews
-        public async Task<IActionResult> Index()
+          public async Task<IActionResult> Index()
         {
-            var bookstoreContext = _context.Review.Include(r => r.Book);
-            return View(await bookstoreContext.ToListAsync());
+          var bookstoreContext = _context.Review.Include(r => r.Book);
+        return View(await bookstoreContext.ToListAsync());
         }
 
         // GET: Reviews/Details/5
+        
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Review == null)

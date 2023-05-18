@@ -16,14 +16,20 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Title)
         </dd>
+        <dt class="col-sm-2">
+            Front Page
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@Model.FrontPage" alt="front_page" width="200px">
+        </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.YearPublished)
+           Year published
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.YearPublished)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NumPages)
+            Number of pages
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.NumPages)
@@ -40,24 +46,22 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Publisher)
         </dd>
+       
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FrontPage)
+            Download
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FrontPage)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DownloadURL)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DownloadURL)
+            <a href="@Model.DownloadURL">Download URL</a> 
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Author)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Author.FirstName)
+            @Html.DisplayFor(model => model.Author.LastName)
         </dd>
+       
+
     </dl>
 </div>
 <div>

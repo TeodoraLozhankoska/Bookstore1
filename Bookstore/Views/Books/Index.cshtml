@@ -58,12 +58,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Author.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Author.LastName)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.FirstName)
+                @Html.DisplayFor(modelItem => item.Author.LastName)
+            </td>
+               
             <td>
                 @Html.DisplayFor(modelItem => item.YearPublished)
             </td>

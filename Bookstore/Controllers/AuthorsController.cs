@@ -21,18 +21,34 @@ namespace Bookstore.Controllers
         // GET: Authors
         public async Task<IActionResult> Index(string? firstName, string? lastName, string? nationality)
         {
-                if(firstName  == null && lastName == null)
+            //     if(firstName  == null && lastName == null)
+            //{
+            //  return View(await _context.Author.ToListAsync());
+
+            //}
+
+            //return _context.Author != null ? 
+
+            // TODO: Find a way to filter nationality, doesn't work atm
+            //          View(await _context.Author.Where(author => firstName == null ? true : author.FirstName.ToLower().Contains(firstName.ToLower())).Where(author => lastName == null ? true : author.LastName.ToLower().Contains(lastName.ToLower())).Where(author => nationality == null ? true : author.Nationality.ToLower().Contains(nationality.ToLower())).ToListAsync()) :
+            //        Problem("Entity set 'BookstoreContext.Author'  is null.");
+            IQueryable<Author> authors = _context.Author.AsQueryable();
+
+            if (!string.IsNullOrEmpty(nationality))
             {
-                return View(await _context.Author.ToListAsync());
-                
+                authors = authors.Where(a => a.Nationality == nationality);
             }
 
-              return _context.Author != null ? 
+            if (!string.IsNullOrEmpty(firstName )&& !string.IsNullOrEmpty(lastName))
+            {
+               
 
-                          // TODO: Find a way to filter nationality, doesn't work atm
-                          View(await _context.Author.Where(author => firstName == null ? true : author.FirstName.ToLower().Contains(firstName.ToLower())).Where(author => lastName == null ? true : author.LastName.ToLower().Contains(lastName.ToLower())).Where(author => nationality == null ? true : author.Nationality.ToLower().Contains(nationality.ToLower())).ToListAsync()) :
-                          Problem("Entity set 'BookstoreContext.Author'  is null.");
+                authors = authors.Where(a => a.FirstName.Contains(firstName) && a.LastName.Contains(lastName));
+            }
+
+            return View(await authors.ToListAsync());
         }
+
 
         // GET: Authors/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -48,6 +64,12 @@ namespace Bookstore.Controllers
             {
                 return NotFound();
             }
+            var books = await _context.Book
+                .Where(r => r.AuthorId == id)
+                .Select(r => r.Title)
+                .ToListAsync();
+
+            ViewBag.Books = books;
 
             return View(author);
         }

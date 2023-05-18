@@ -17,9 +17,9 @@ namespace Bookstore.Models
         public string? FrontPage { get; set; }
         public string? DownloadURL { get; set; }
         public int AuthorId { get; set; }
-        public Author Author { get; set; }
+        public Author? Author { get; set; }
         public ICollection<Review>? Reviews { get; set; }
-        public ICollection<BookGenre>? Genres { get; }
+        public ICollection<BookGenre>? Genres { get; set; }
         public ICollection<UserBook>? UserBooks { get; set; }
 
     }

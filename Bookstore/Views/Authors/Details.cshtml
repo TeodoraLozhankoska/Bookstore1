@@ -11,19 +11,19 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
+           First Name
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FirstName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
+           Last Name
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LastName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BirthDate)
+           Date of birth
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.BirthDate)
@@ -40,6 +40,20 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Gender)
         </dd>
+        <dt class="col-sm-2">
+            Books
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                var b = ViewBag.Books as List<string>;
+            }
+
+            @foreach (var book in b)
+            {
+                <p>@book</p>
+            }
+        </dd>
+        
     </dl>
 
 </div>
